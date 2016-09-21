@@ -1,21 +1,21 @@
 {
-  "name": "cbor-codec",
-  "version": "1.0.1",
+  "author": "Wire <webapp@wire.com> (https://wire.com)",
   "devDependencies": {
     "chai": "~3",
     "coffee-script": "~1",
     "mocha": "~2"
   },
   "license": "LicenseRef-LICENSE",
+  "main": "dist/commonjs/cbor.js",
+  "name": "wire-webapp-cbor",
   "repository": {
     "type": "git",
     "url": "git://github.com/wireapp/cbor-codec.js.git"
   },
   "scripts": {
-    "build": "coffee -co build src",
+    "build": "coffee -co dist/commonjs src",
     "prepublish": "npm run build",
     "test": "mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
   },
-  "main": "build/cbor.js",
-  "private": true
+  "version": "1.0.1"
 }
