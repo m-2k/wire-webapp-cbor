@@ -17,5 +17,5 @@
     "prepublish": "npm run build",
     "test": "mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
   },
-  "version": "1.0.1"
+  "version": "1.1.0"
 }
