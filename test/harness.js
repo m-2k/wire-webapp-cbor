@@ -1,3 +1,3 @@
 assert = require('chai').assert;
 
-CBOR = require('cbor');
+CBOR = require('../build/cbor');

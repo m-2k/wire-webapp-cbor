@@ -1,12 +1,10 @@
 {
   "name": "cbor-codec",
-  "version": "1.0.0",
-  "dependencies": {
-	"coffee-script": "~1"
-  },
+  "version": "1.0.1",
   "devDependencies": {
-	"mocha": "~2",
-	"chai": "~3"
+    "chai": "~3",
+    "coffee-script": "~1",
+    "mocha": "~2"
   },
   "license": "LicenseRef-LICENSE",
   "repository": {
@@ -14,10 +12,9 @@
     "url": "git://github.com/wireapp/cbor-codec.js.git"
   },
   "scripts": {
-	"build": "coffee -co build src",
-
-	"install": "npm run build",
-	"test": "NODE_PATH=./src mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
+    "build": "coffee -co build src",
+    "install": "npm run build",
+    "test": "mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
   },
   "main": "build/cbor.js",
   "private": true
