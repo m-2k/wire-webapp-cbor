@@ -13,7 +13,7 @@
   },
   "scripts": {
     "build": "coffee -co build src",
-    "install": "npm run build",
+    "postinstall": "npm run build",
     "test": "mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
   },
   "main": "build/cbor.js",
