@@ -1,11 +1,12 @@
 {
   "author": "Wire <webapp@wire.com> (https://wire.com)",
+  "description": "Implementation of Concise Binary Object Representation (CBOR) data format (RFC7049).",
   "devDependencies": {
     "chai": "~3",
     "coffee-script": "~1",
     "mocha": "~3.2.0"
   },
-  "license": "LicenseRef-LICENSE",
+  "license": "GPL-3.0",
   "main": "dist/commonjs/cbor.js",
   "name": "wire-webapp-cbor",
   "repository": {
@@ -17,5 +18,5 @@
     "prepublish": "npm run build",
     "test": "mocha --compilers coffee:coffee-script/register --recursive test/harness.js test"
   },
-  "version": "1.0.1"
+  "version": "1.1.1"
 }
