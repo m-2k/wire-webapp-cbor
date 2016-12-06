@@ -3,7 +3,7 @@
   "devDependencies": {
     "chai": "~3",
     "coffee-script": "~1",
-    "mocha": "~2"
+    "mocha": "~3.2.0"
   },
   "license": "LicenseRef-LICENSE",
   "main": "dist/commonjs/cbor.js",
