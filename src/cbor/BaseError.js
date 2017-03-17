@@ -19,8 +19,25 @@
 
 'use strict';
 
-process.env.NODE_PATH = './src';
-require('module').Module._initPaths();
+/** @module CBOR */
 
-global.assert = require('chai').assert;
-global.CBOR = require('cbor');
+/**
+ * @class BaseError
+ * @extends Error
+ */
+module.exports = (function() {
+  /**
+   * @param {string} message
+   * @returns {string}
+   */
+  const BaseError = function(message) {
+    this.name = this.constructor.name;
+    this.message = message;
+    this.stack = (new Error).stack;
+  };
+
+  BaseError.prototype = new Error;
+  BaseError.prototype.constructor = BaseError;
+
+  return BaseError;
+})();

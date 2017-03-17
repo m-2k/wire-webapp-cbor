@@ -19,8 +19,12 @@
 
 'use strict';
 
-process.env.NODE_PATH = './src';
-require('module').Module._initPaths();
+/** @module CBOR */
 
-global.assert = require('chai').assert;
-global.CBOR = require('cbor');
+module.exports = {
+  BaseError:   require('./cbor/BaseError'),
+  DecodeError: require('./cbor/DecodeError'),
+  Decoder:     require('./cbor/Decoder'),
+  Encoder:     require('./cbor/Encoder'),
+  Types:       require('./cbor/Types'),
+};
