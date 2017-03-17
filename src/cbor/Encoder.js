@@ -23,7 +23,10 @@ const Types = require('./Types');
 
 /** @module CBOR */
 
-/** @class Encoder */
+/**
+ * @class Encoder
+ * @returns {Encoder}
+ */
 class Encoder {
   constructor() {
     this.buffer = new ArrayBuffer(4);
@@ -31,34 +34,67 @@ class Encoder {
     return this;
   }
 
+  /** @returns {ArrayBuffer} */
   get_buffer() {
     return this.buffer.slice(0, this.view.byteOffset);
   }
 
+  /**
+   * @param {number} need_nbytes
+   * @returns {void}
+   * @private
+   */
   _grow_buffer(need_nbytes) {
     const new_len = Math.max((this.buffer.byteLength * 1.5), (this.buffer.byteLength + need_nbytes));
     const new_buf = new ArrayBuffer(new_len);
     new Uint8Array(new_buf).set(new Uint8Array(this.buffer));
 
     this.buffer = new_buf;
-    return this.view = new DataView(this.buffer, this.view.byteOffset);
+    this.view = new DataView(this.buffer, this.view.byteOffset);
   }
 
+  /**
+   * @param {number} bytes
+   * @returns {void}
+   * @private
+   */
   _ensure(bytes) {
     if (!(this.view.byteLength < bytes)) { return; }
     return this._grow_buffer(bytes);
   }
 
+  /**
+   * @param {number} bytes
+   * @returns {void}
+   * @private
+   */
   _advance(bytes) {
-    return this.view = new DataView(this.buffer, (this.view.byteOffset + bytes));
+    this.view = new DataView(this.buffer, (this.view.byteOffset + bytes));
   }
 
+  /**
+   * @callback closureCallback
+   */
+
+  /**
+   * @param {number} bytes
+   * @param {closureCallback} closure
+   * @returns {void}
+   * @private
+   */
   _write(bytes, closure) {
     this._ensure(bytes);
     closure();
     return this._advance(bytes);
   }
 
+  /**
+   * @param {*} type
+   * @param {number} len
+   * @returns {void}
+   * @private
+   * @throws RangeError
+   */
   _write_type_and_len(type, len) {
     const major = (Types.major(type)) << 5;
 
@@ -85,18 +121,38 @@ class Encoder {
    * writer-like interface over our ArrayBuffer
    */
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _u8(x) {
     return this._write(1, () => this.view.setUint8(0, x));
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _u16(x) {
     return this._write(2, () => this.view.setUint16(0, x));
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _u32(x) {
     return this._write(4, () => this.view.setUint32(0, x));
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _u64(x) {
     const low = x % Math.pow(2, 32);
     const high = (x - low) / Math.pow(2, 32);
@@ -104,17 +160,32 @@ class Encoder {
       this.view.setUint32(0, high);
       return this.view.setUint32(4, low);
     };
-    return this._write(8, w64, x);
+    return this._write(8, w64);
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _f32(x) {
     return this._write(4, () => this.view.setFloat32(0, x));
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @private
+   */
   _f64(x) {
     return this._write(8, () => this.view.setFloat64(0, x));
   }
 
+  /**
+   * @param {Uint8Array} x
+   * @returns {void}
+   * @private
+   */
   _bytes(x) {
     const nbytes = x.byteLength;
 
@@ -125,6 +196,12 @@ class Encoder {
 
   /*
    * public API
+   */
+
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
    */
   u8(x) {
     if ((0 <= x) && (x <= 23)) {
@@ -137,6 +214,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   u16(x) {
     if ((0 <= x) && (x <= 23)) {
       return this._u8(x);
@@ -151,6 +233,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   u32(x) {
     if ((0 <= x) && (x <= 23)) {
       return this._u8(x);
@@ -168,6 +255,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   u64(x) {
     if ((0 <= x) && (x <= 23)) {
       return this._u8(x);
@@ -188,6 +280,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   i8(x) {
     if (x >= 0) {
       return this._u8(x);
@@ -204,6 +301,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   i16(x) {
     if (x >= 0) {
       return this._u16(x);
@@ -223,6 +325,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   i32(x) {
     if (x >= 0) {
       return this._u32(x);
@@ -245,6 +352,11 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   * @throws RangeError
+   */
   i64(x) {
     if (x >= 0) {
       return this._u64(x);
@@ -270,25 +382,45 @@ class Encoder {
     }
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   */
   f32(x) {
     this._u8(0xE0 | 26);
     return this._f32(x);
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   */
   f64(x) {
     this._u8(0xE0 | 27);
     return this._f64(x);
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   */
   bool(x) {
     return this._u8(0xE0 | (x ? 21 : 20));
   }
 
+  /**
+   * @param {ArrayBuffer|Uint8Array} x
+   * @returns {void}
+   */
   bytes(x) {
     this._write_type_and_len(Types.BYTES, x.byteLength);
     return this._bytes(x);
   }
 
+  /**
+   * @param {number} x
+   * @returns {void}
+   */
   text(x) {
     // http://ecmanaut.blogspot.de/2006/07/encoding-decoding-utf8-in-javascript.html
     const utf8 = unescape(encodeURIComponent(x));
@@ -297,34 +429,48 @@ class Encoder {
     return this._bytes(new Uint8Array(utf8.split('').map((c) => c.charCodeAt(0))));
   }
 
+  /** @returns {void} */
   null() {
     return this._u8(0xE0 | 22);
   }
 
+  /** @returns {void} */
   undefined() {
     return this._u8(0xE0 | 23);
   }
 
+  /**
+   * @param {number} len
+   * @returns {void}
+   */
   array(len) {
     return this._write_type_and_len(Types.ARRAY, len);
   }
 
+  /** @returns {void} */
   array_begin() {
     return this._u8(0x9F);
   }
 
+  /** @returns {void} */
   array_end() {
     return this._u8(0xFF);
   }
 
+  /**
+   * @param {number} len
+   * @returns {void}
+   */
   object(len) {
     return this._write_type_and_len(Types.OBJECT, len);
   }
 
+  /** @returns {void} */
   object_begin() {
     return this._u8(0xBF);
   }
 
+  /** @returns {void} */
   object_end() {
     return this._u8(0xFF);
   }

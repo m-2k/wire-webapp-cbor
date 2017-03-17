@@ -16,7 +16,7 @@
   },
   "scripts": {
     "lint": "eslint src/",
-    "generate": "jsdoc --verbose --pedantic --configure jsdoc.json src/",
+    "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/",
     "test": "mocha --recursive test/harness.js test"
   },
   "typings": "typings/types.d.ts",

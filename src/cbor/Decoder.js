@@ -35,10 +35,14 @@ const DEFAULT_CONFIG = {
 /**
  * @class Decoder
  * @param {ArrayBuffer} buffer
- * @param {Object} config
+ * @param {Object} [config=DEFAULT_CONFIG] config
  * @returns {Decoder}
  */
 class Decoder {
+  /**
+   * @callback closureCallback
+   */
+
   constructor(buffer, config = DEFAULT_CONFIG) {
     // buffer *must* be an ArrayBuffer
 
@@ -53,6 +57,7 @@ class Decoder {
    * @param {number} overflow
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   static _check_overflow(x, overflow) {
     if (x > overflow) {
@@ -79,14 +84,11 @@ class Decoder {
   }
 
   /**
-   * @callback closureCallback
-   */
-
-  /**
    * @param {number} bytes
    * @param {closureCallback} closure
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   _read(bytes, closure) {
     if (this._available < bytes) {
@@ -155,6 +157,7 @@ class Decoder {
    * @param {number} minor
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   _read_length(minor) {
     if ((0 <= minor) && (minor <= 23)) {
@@ -180,6 +183,7 @@ class Decoder {
    * @param {number} max_len
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   _bytes(minor, max_len) {
     const len = this._read_length(minor);
@@ -193,6 +197,7 @@ class Decoder {
   /**
    * @returns {Array}
    * @private
+   * @throws DecodeError
    */
   _read_type_info() {
     let type = this._u8();
@@ -265,9 +270,10 @@ class Decoder {
   }
 
   /**
-   * @param {number|Array<number>} expected
+   * @param {(number|Array<number>)} expected
    * @returns {Array}
    * @private
+   * @throws DecodeError
    */
   _type_info_with_assert(expected) {
     const [type, minor] = this._read_type_info();
@@ -284,10 +290,11 @@ class Decoder {
   }
 
   /**
-   * @param {Types.UINT8|Types.UINT16|Types.UINT32|Types.UINT64} type
+   * @param {*} type
    * @param {number} minor
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   _read_unsigned(type, minor) {
     switch (type) {
@@ -313,6 +320,7 @@ class Decoder {
    * @param {*} minor
    * @returns {number}
    * @private
+   * @throws DecodeError
    */
   _read_signed(overflow, type, minor) {
     switch (type) {
@@ -475,7 +483,10 @@ class Decoder {
     return this._f64();
   }
 
-  /** @returns {boolean} */
+  /**
+   * @returns {boolean}
+   * @throws DecodeError
+   */
   bool() {
     const minor = this._type_info_with_assert(Types.BOOL)[1];
 
@@ -489,7 +500,10 @@ class Decoder {
     }
   }
 
-  /** @returns {number} */
+  /**
+   * @returns {number}
+   * @throws DecodeError
+   */
   bytes() {
     const minor = this._type_info_with_assert(Types.BYTES)[1];
 
@@ -501,7 +515,10 @@ class Decoder {
     return this._bytes(minor, this.config['max_bytes_length']);
   }
 
-  /** @returns {string} */
+  /**
+   * @returns {string}
+   * @throws DecodeError
+   */
   text() {
     const minor = this._type_info_with_assert(Types.TEXT)[1];
 
@@ -519,7 +536,8 @@ class Decoder {
 
   /**
    * @param {closureCallback} closure
-   * @returns {closureCallback}
+   * @returns {(closureCallback|null)}
+   * @throws DecodeError
    */
   optional(closure) {
     try {
@@ -532,7 +550,10 @@ class Decoder {
     }
   }
 
-  /** @returns {number} */
+  /**
+   * @returns {number}
+   * @throws DecodeError
+   */
   array() {
     const minor = this._type_info_with_assert(Types.ARRAY)[1];
 
@@ -549,7 +570,10 @@ class Decoder {
     return len;
   }
 
-  /** @returns {number} */
+  /**
+   * @returns {number}
+   * @throws DecodeError
+   */
   object() {
     const minor = this._type_info_with_assert(Types.OBJECT)[1];
 
@@ -570,6 +594,7 @@ class Decoder {
    * @param {*} type
    * @private
    * @returns {void}
+   * @throws DecodeError
    */
   _skip_until_break(type) {
     while (true) {
@@ -591,7 +616,8 @@ class Decoder {
    * @param level {number}
    * @returns {boolean}
    * @private
-   * @returns {void}
+   * @returns {boolean}
+   * @throws DecodeError
    */
   _skip_value(level) {
     if (level === 0) {

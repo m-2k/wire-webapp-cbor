@@ -24,12 +24,10 @@
 /**
  * @class BaseError
  * @extends Error
+ * @param {string} message
+ * @returns {string}
  */
 module.exports = (function() {
-  /**
-   * @param {string} message
-   * @returns {string}
-   */
   const BaseError = function(message) {
     this.name = this.constructor.name;
     this.message = message;

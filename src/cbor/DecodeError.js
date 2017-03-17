@@ -23,53 +23,34 @@ const BaseError = require('./BaseError');
 
 /** @module CBOR */
 
-const staticValues = {
-  INVALID_TYPE: 'Invalid type',
-  UNEXPECTED_EOF: 'Unexpected end-of-buffer',
-  UNEXPECTED_TYPE: 'Unexpected type',
-  INT_OVERFLOW: 'Integer overflow',
-  TOO_LONG: 'Field too long',
-  TOO_NESTED: 'Object nested too deep',
-};
-
-/** @extends BaseError */
-module.exports = class DecodeError extends BaseError {
-  /**
-   * @param {string} message
-   * @param {*} extra
-   */
+/**
+ * @class DecodeError
+ * @param {string} message
+ * @param {*} [extra]
+ */
+class DecodeError extends BaseError {
   constructor (message, extra) {
     super(message);
     this.extra = extra;
   }
 
   /** @type string */
-  static get INVALID_TYPE () {
-    return staticValues.INVALID_TYPE;
-  }
+  static get INVALID_TYPE () { return 'Invalid type'; }
 
   /** @type string */
-  static get UNEXPECTED_EOF () {
-    return staticValues.UNEXPECTED_EOF;
-  }
+  static get UNEXPECTED_EOF () { return 'Unexpected end-of-buffer'; }
 
   /** @type string */
-  static get UNEXPECTED_TYPE () {
-    return staticValues.UNEXPECTED_TYPE;
-  }
+  static get UNEXPECTED_TYPE () { return 'Unexpected type'; }
 
   /** @type string */
-  static get INT_OVERFLOW () {
-    return staticValues.INT_OVERFLOW;
-  }
+  static get INT_OVERFLOW () { return 'Integer overflow'; }
 
   /** @type string */
-  static get TOO_LONG () {
-    return staticValues.TOO_LONG;
-  }
+  static get TOO_LONG () { return 'Field too long'; }
 
   /** @type string */
-  static get TOO_NESTED () {
-    return staticValues.TOO_NESTED;
-  }
-};
+  static get TOO_NESTED () { return 'Object nested too deep'; }
+}
+
+module.exports = DecodeError;

@@ -21,138 +21,76 @@
 
 /** @module CBOR */
 
-const staticVariables = {
-  ARRAY: 1,
-  BOOL: 2,
-  BREAK: 3,
-  BYTES: 4,
-  FLOAT16: 5,
-  FLOAT32: 6,
-  FLOAT64: 7,
-  UINT8: 8,
-  UINT16: 9,
-  UINT32: 10,
-  UINT64: 11,
-  INT8: 12,
-  INT16: 13,
-  INT32: 14,
-  INT64: 15,
-  NULL: 16,
-  OBJECT: 17,
-  TAGGED: 18,
-  TEXT: 19,
-  UNDEFINED: 20,
-};
-
-/** @class Types */
+/** @class Types this*/
 class Types {
   constructor() {
     throw new Error(`Can't create instance of singleton`);
   }
 
   /** @type {number} */
-  static get ARRAY() {
-    return staticVariables.ARRAY;
-  }
+  static get ARRAY() { return 1; }
 
   /** @type {number} */
-  static get BOOL() {
-    return staticVariables.BOOL;
-  }
+  static get BOOL() { return 2; }
 
   /** @type {number} */
-  static get BREAK() {
-    return staticVariables.BREAK;
-  }
+  static get BREAK() { return 3; }
 
   /** @type {number} */
-  static get BYTES() {
-    return staticVariables.BYTES;
-  }
+  static get BYTES() {return 4; }
 
   /** @type {number} */
-  static get FLOAT16() {
-    return staticVariables.FLOAT16;
-  }
+  static get FLOAT16() { return 5; }
 
   /** @type {number} */
-  static get FLOAT32() {
-    return staticVariables.FLOAT32;
-  }
+  static get FLOAT32() { return 6; }
 
   /** @type {number} */
-  static get FLOAT64() {
-    return staticVariables.FLOAT64;
-  }
+  static get FLOAT64() { return 7; }
 
   /** @type {number} */
-  static get UINT8() {
-    return staticVariables.UINT8;
-  }
+  static get UINT8() { return 8; }
 
   /** @type {number} */
-  static get UINT16() {
-    return staticVariables.UINT16;
-  }
+  static get UINT16() { return 9; }
 
   /** @type {number} */
-  static get UINT32() {
-    return staticVariables.UINT32;
-  }
+  static get UINT32() { return 10; }
 
   /** @type {number} */
-  static get UINT64() {
-    return staticVariables.UINT64;
-  }
+  static get UINT64() { return 11; }
 
   /** @type {number} */
-  static get INT8() {
-    return staticVariables.INT8;
-  }
+  static get INT8() { return 12; }
 
   /** @type {number} */
-  static get INT16() {
-    return staticVariables.INT16;
-  }
+  static get INT16() { return 13; }
 
   /** @type {number} */
-  static get INT32() {
-    return staticVariables.INT32;
-  }
+  static get INT32() { return 14; }
 
   /** @type {number} */
-  static get INT64() {
-    return staticVariables.INT64;
-  }
+  static get INT64() { return 15; }
 
   /** @type {number} */
-  static get NULL() {
-    return staticVariables.NULL;
-  }
+  static get NULL() { return 16; }
 
   /** @type {number} */
-  static get OBJECT() {
-    return staticVariables.OBJECT;
-  }
+  static get OBJECT() { return 17; }
 
   /** @type {number} */
-  static get TAGGED() {
-    return staticVariables.TAGGED;
-  }
+  static get TAGGED() { return 18; }
 
   /** @type {number} */
-  static get TEXT() {
-    return staticVariables.TEXT;
-  }
+  static get TEXT() { return 19; }
 
   /** @type {number} */
-  static get UNDEFINED() {
-    return staticVariables.UNDEFINED;
-  }
+  static get UNDEFINED() { return 20; }
 
   /**
-   * @param {Types} t
+   * @param {*} t
    * @returns {number}
+   * @throws TypeError
    */
   static major(t) {
     switch (t) {

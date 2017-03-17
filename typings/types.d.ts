@@ -3,54 +3,74 @@ module CBOR {
    /**
     * @class BaseError
     * @extends Error
+    * @param {string} message
+    * @returns {string}
     */
    class BaseError extends Error {
        /**
         * @class BaseError
         * @extends Error
+        * @param {string} message
+        * @returns {string}
         */
-       constructor();
+       constructor(message: string);
 
    }
 
-   /** @type string */
-   var INVALID_TYPE: string;
+   /**
+    * @class DecodeError
+    * @param {string} message
+    * @param {*} [extra]
+    */
+   class DecodeError {
+       /**
+        * @class DecodeError
+        * @param {string} message
+        * @param {*} [extra]
+        */
+       constructor(message: string, extra?: any);
 
-   /** @type string */
-   var UNEXPECTED_EOF: string;
+       /** @type string */
+       static INVALID_TYPE: string;
 
-   /** @type string */
-   var UNEXPECTED_TYPE: string;
+       /** @type string */
+       static UNEXPECTED_EOF: string;
 
-   /** @type string */
-   var INT_OVERFLOW: string;
+       /** @type string */
+       static UNEXPECTED_TYPE: string;
 
-   /** @type string */
-   var TOO_LONG: string;
+       /** @type string */
+       static INT_OVERFLOW: string;
 
-   /** @type string */
-   var TOO_NESTED: string;
+       /** @type string */
+       static TOO_LONG: string;
+
+       /** @type string */
+       static TOO_NESTED: string;
+
+   }
 
    /**
     * @class Decoder
     * @param {ArrayBuffer} buffer
-    * @param {Object} config
+    * @param {Object} [config=DEFAULT_CONFIG] config
     * @returns {Decoder}
     */
    class Decoder {
        /**
         * @class Decoder
         * @param {ArrayBuffer} buffer
-        * @param {Object} config
+        * @param {Object} [config=DEFAULT_CONFIG] config
         * @returns {Decoder}
         */
-       constructor(buffer: ArrayBuffer, config: Object);
+       constructor(buffer: ArrayBuffer, config?: Object);
 
        /**
         * @param {number} x
         * @param {number} overflow
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
        private static _check_overflow(x: number, overflow: number): number;
 
@@ -72,6 +92,7 @@ module CBOR {
         * @param {closureCallback} closure
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
        private _read(bytes: number, closure: closureCallback): number;
 
@@ -115,6 +136,7 @@ module CBOR {
         * @param {number} minor
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
        private _read_length(minor: number): number;
 
@@ -123,29 +145,33 @@ module CBOR {
         * @param {number} max_len
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
        private _bytes(minor: number, max_len: number): number;
 
        /**
         * @returns {Array}
         * @private
+        * @throws DecodeError
         */
        private _read_type_info(): Array;
 
        /**
-        * @param {number|Array<number>} expected
+        * @param {(number|Array<number>)} expected
         * @returns {Array}
         * @private
+        * @throws DecodeError
         */
        private _type_info_with_assert(expected: (number|number[])): Array;
 
        /**
-        * @param {Types.UINT8|Types.UINT16|Types.UINT32|Types.UINT64} type
+        * @param {*} type
         * @param {number} minor
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
-       private _read_unsigned(type: (Types.UINT8|Types.UINT16|Types.UINT32|Types.UINT64), minor: number): number;
+       private _read_unsigned(type: any, minor: number): number;
 
        /**
         * @param {number} overflow
@@ -153,6 +179,7 @@ module CBOR {
         * @param {*} minor
         * @returns {number}
         * @private
+        * @throws DecodeError
         */
        private _read_signed(overflow: number, type: any, minor: any): number;
 
@@ -195,31 +222,48 @@ module CBOR {
        /** @returns {number} */
        f64(): number;
 
-       /** @returns {boolean} */
+       /**
+        * @returns {boolean}
+        * @throws DecodeError
+        */
        bool(): boolean;
 
-       /** @returns {number} */
+       /**
+        * @returns {number}
+        * @throws DecodeError
+        */
        bytes(): number;
 
-       /** @returns {string} */
+       /**
+        * @returns {string}
+        * @throws DecodeError
+        */
        text(): string;
 
        /**
         * @param {closureCallback} closure
-        * @returns {closureCallback}
+        * @returns {(closureCallback|null)}
+        * @throws DecodeError
         */
-       optional(closure: closureCallback): closureCallback;
+       optional(closure: closureCallback): (closureCallback|null);
 
-       /** @returns {number} */
+       /**
+        * @returns {number}
+        * @throws DecodeError
+        */
        array(): number;
 
-       /** @returns {number} */
+       /**
+        * @returns {number}
+        * @throws DecodeError
+        */
        object(): number;
 
        /**
         * @param {*} type
         * @private
         * @returns {void}
+        * @throws DecodeError
         */
        private _skip_until_break(type: any): void;
 
@@ -227,7 +271,8 @@ module CBOR {
         * @param level {number}
         * @returns {boolean}
         * @private
-        * @returns {void}
+        * @returns {boolean}
+        * @throws DecodeError
         */
        private _skip_value(level: number): boolean;
 
@@ -241,16 +286,228 @@ module CBOR {
     */
    type closureCallback = () => void;
 
-   /** @class Encoder */
+   /**
+    * @class Encoder
+    * @returns {Encoder}
+    */
    class Encoder {
-       /** @class Encoder */
+       /**
+        * @class Encoder
+        * @returns {Encoder}
+        */
        constructor();
+
+       /** @returns {ArrayBuffer} */
+       get_buffer(): ArrayBuffer;
+
+       /**
+        * @param {number} need_nbytes
+        * @returns {void}
+        * @private
+        */
+       private _grow_buffer(need_nbytes: number): void;
+
+       /**
+        * @param {number} bytes
+        * @returns {void}
+        * @private
+        */
+       private _ensure(bytes: number): void;
+
+       /**
+        * @param {number} bytes
+        * @returns {void}
+        * @private
+        */
+       private _advance(bytes: number): void;
+
+       /**
+        * @param {number} bytes
+        * @param {closureCallback} closure
+        * @returns {void}
+        * @private
+        */
+       private _write(bytes: number, closure: closureCallback): void;
+
+       /**
+        * @param {*} type
+        * @param {number} len
+        * @returns {void}
+        * @private
+        * @throws RangeError
+        */
+       private _write_type_and_len(type: any, len: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _u8(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _u16(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _u32(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _u64(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _f32(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @private
+        */
+       private _f64(x: number): void;
+
+       /**
+        * @param {Uint8Array} x
+        * @returns {void}
+        * @private
+        */
+       private _bytes(x: Uint8Array): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       u8(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       u16(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       u32(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       u64(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       i8(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       i16(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       i32(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        * @throws RangeError
+        */
+       i64(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        */
+       f32(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        */
+       f64(x: number): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        */
+       bool(x: number): void;
+
+       /**
+        * @param {ArrayBuffer|Uint8Array} x
+        * @returns {void}
+        */
+       bytes(x: (ArrayBuffer|Uint8Array)): void;
+
+       /**
+        * @param {number} x
+        * @returns {void}
+        */
+       text(x: number): void;
+
+       /** @returns {void} */
+       null(): void;
+
+       /** @returns {void} */
+       undefined(): void;
+
+       /**
+        * @param {number} len
+        * @returns {void}
+        */
+       array(len: number): void;
+
+       /** @returns {void} */
+       array_begin(): void;
+
+       /** @returns {void} */
+       array_end(): void;
+
+       /**
+        * @param {number} len
+        * @returns {void}
+        */
+       object(len: number): void;
+
+       /** @returns {void} */
+       object_begin(): void;
+
+       /** @returns {void} */
+       object_end(): void;
 
    }
 
-   /** @class Types */
+   /** @class Types this*/
    class Types {
-       /** @class Types */
+       /** @class Types this*/
        constructor();
 
        /** @type {number} */
@@ -314,10 +571,11 @@ module CBOR {
        static UNDEFINED: number;
 
        /**
-        * @param {Types} t
+        * @param {*} t
         * @returns {number}
+        * @throws TypeError
         */
-       static major(t: Types): number;
+       static major(t: any): number;
 
    }
 
