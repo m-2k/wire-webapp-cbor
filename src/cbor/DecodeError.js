@@ -34,22 +34,22 @@ class DecodeError extends BaseError {
     this.extra = extra;
   }
 
-  /** @type string */
+  /** @type {string} */
   static get INVALID_TYPE () { return 'Invalid type'; }
 
-  /** @type string */
+  /** @type {string} */
   static get UNEXPECTED_EOF () { return 'Unexpected end-of-buffer'; }
 
-  /** @type string */
+  /** @type {string} */
   static get UNEXPECTED_TYPE () { return 'Unexpected type'; }
 
-  /** @type string */
+  /** @type {string} */
   static get INT_OVERFLOW () { return 'Integer overflow'; }
 
-  /** @type string */
+  /** @type {string} */
   static get TOO_LONG () { return 'Field too long'; }
 
-  /** @type string */
+  /** @type {string} */
   static get TOO_NESTED () { return 'Object nested too deep'; }
 }
 

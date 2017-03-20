@@ -25,7 +25,7 @@ const Types = require('./Types');
 
 /**
  * @class Encoder
- * @returns {Encoder}
+ * @returns {Encoder} `this`
  */
 class Encoder {
   constructor() {
@@ -40,7 +40,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} need_nbytes
+   * @param {!number} need_nbytes
    * @returns {void}
    * @private
    */
@@ -54,7 +54,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} bytes
+   * @param {!number} bytes
    * @returns {void}
    * @private
    */
@@ -64,7 +64,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} bytes
+   * @param {!number} bytes
    * @returns {void}
    * @private
    */
@@ -77,8 +77,8 @@ class Encoder {
    */
 
   /**
-   * @param {number} bytes
-   * @param {closureCallback} closure
+   * @param {!number} bytes
+   * @param {!closureCallback} closure
    * @returns {void}
    * @private
    */
@@ -89,8 +89,8 @@ class Encoder {
   }
 
   /**
-   * @param {*} type
-   * @param {number} len
+   * @param {Types} type
+   * @param {!number} len
    * @returns {void}
    * @private
    * @throws RangeError
@@ -122,7 +122,7 @@ class Encoder {
    */
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -131,7 +131,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -140,7 +140,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -149,7 +149,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -164,7 +164,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -173,7 +173,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @private
    */
@@ -182,7 +182,7 @@ class Encoder {
   }
 
   /**
-   * @param {Uint8Array} x
+   * @param {!Uint8Array} x
    * @returns {void}
    * @private
    */
@@ -199,7 +199,7 @@ class Encoder {
    */
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -215,7 +215,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -234,7 +234,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -256,7 +256,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -281,7 +281,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -302,7 +302,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -326,7 +326,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -353,7 +353,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    * @throws RangeError
    */
@@ -383,7 +383,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    */
   f32(x) {
@@ -392,7 +392,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    */
   f64(x) {
@@ -401,7 +401,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    */
   bool(x) {
@@ -409,7 +409,7 @@ class Encoder {
   }
 
   /**
-   * @param {ArrayBuffer|Uint8Array} x
+   * @param {!(ArrayBuffer|Uint8Array)} x
    * @returns {void}
    */
   bytes(x) {
@@ -418,7 +418,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} x
+   * @param {!number} x
    * @returns {void}
    */
   text(x) {
@@ -440,7 +440,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} len
+   * @param {!number} len
    * @returns {void}
    */
   array(len) {
@@ -458,7 +458,7 @@ class Encoder {
   }
 
   /**
-   * @param {number} len
+   * @param {!number} len
    * @returns {void}
    */
   object(len) {

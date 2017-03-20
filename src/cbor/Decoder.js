@@ -34,9 +34,9 @@ const DEFAULT_CONFIG = {
 
 /**
  * @class Decoder
- * @param {ArrayBuffer} buffer
+ * @param {!ArrayBuffer} buffer
  * @param {Object} [config=DEFAULT_CONFIG] config
- * @returns {Decoder}
+ * @returns {Decoder} `this`
  */
 class Decoder {
   /**
@@ -53,8 +53,8 @@ class Decoder {
   }
 
   /**
-   * @param {number} x
-   * @param {number} overflow
+   * @param {!number} x
+   * @param {!number} overflow
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -67,7 +67,7 @@ class Decoder {
   }
 
   /**
-   * @param {number} bytes
+   * @param {!number} bytes
    * @returns {void}
    * @private
    */
@@ -76,7 +76,7 @@ class Decoder {
   }
 
   /**
-   * @returns {number}
+   * @returns {!number}
    * @private
    */
   _available() {
@@ -84,8 +84,8 @@ class Decoder {
   }
 
   /**
-   * @param {number} bytes
-   * @param {closureCallback} closure
+   * @param {!number} bytes
+   * @param {!closureCallback} closure
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -154,7 +154,7 @@ class Decoder {
   }
 
   /**
-   * @param {number} minor
+   * @param {!number} minor
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -179,8 +179,8 @@ class Decoder {
   }
 
   /**
-   * @param {number} minor
-   * @param {number} max_len
+   * @param {!number} minor
+   * @param {!number} max_len
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -195,7 +195,7 @@ class Decoder {
   }
 
   /**
-   * @returns {Array}
+   * @returns {Array<Types|number>}
    * @private
    * @throws DecodeError
    */
@@ -270,8 +270,8 @@ class Decoder {
   }
 
   /**
-   * @param {(number|Array<number>)} expected
-   * @returns {Array}
+   * @param {!(number|Array<number>)} expected
+   * @returns {Array<Types|number>}
    * @private
    * @throws DecodeError
    */
@@ -290,8 +290,8 @@ class Decoder {
   }
 
   /**
-   * @param {*} type
-   * @param {number} minor
+   * @param {Types} type
+   * @param {!number} minor
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -315,9 +315,9 @@ class Decoder {
   }
 
   /**
-   * @param {number} overflow
+   * @param {!number} overflow
    * @param {*} type
-   * @param {*} minor
+   * @param {!number} minor
    * @returns {number}
    * @private
    * @throws DecodeError
@@ -535,7 +535,7 @@ class Decoder {
   }
 
   /**
-   * @param {closureCallback} closure
+   * @param {!closureCallback} closure
    * @returns {(closureCallback|null)}
    * @throws DecodeError
    */
@@ -592,8 +592,8 @@ class Decoder {
 
   /**
    * @param {*} type
-   * @private
    * @returns {void}
+   * @private
    * @throws DecodeError
    */
   _skip_until_break(type) {
@@ -613,10 +613,9 @@ class Decoder {
   }
 
   /**
-   * @param level {number}
+   * @param {!number} level
    * @returns {boolean}
    * @private
-   * @returns {boolean}
    * @throws DecodeError
    */
   _skip_value(level) {

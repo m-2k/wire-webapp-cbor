@@ -21,7 +21,10 @@
 
 /** @module CBOR */
 
-/** @class Types this*/
+/**
+ * @class Types
+ * @throws Error
+ */
 class Types {
   constructor() {
     throw new Error(`Can't create instance of singleton`);
@@ -88,7 +91,7 @@ class Types {
   static get UNDEFINED() { return 20; }
 
   /**
-   * @param {*} t
+   * @param {!Types} t
    * @returns {number}
    * @throws TypeError
    */
