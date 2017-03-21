@@ -19,8 +19,6 @@
 
 'use strict';
 
-/** @module CBOR */
-
 module.exports = {
   BaseError:   require('./cbor/BaseError'),
   DecodeError: require('./cbor/DecodeError'),

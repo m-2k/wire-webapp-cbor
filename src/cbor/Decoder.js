@@ -22,8 +22,6 @@
 const DecodeError = require('./DecodeError');
 const Types = require('./Types');
 
-/** @module CBOR */
-
 const DEFAULT_CONFIG = {
   max_array_length: 1000,
   max_bytes_length: 5242880,

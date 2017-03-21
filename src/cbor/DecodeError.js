@@ -21,8 +21,6 @@
 
 const BaseError = require('./BaseError');
 
-/** @module CBOR */
-
 /**
  * @class DecodeError
  * @param {string} message

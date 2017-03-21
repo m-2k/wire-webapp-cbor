@@ -21,8 +21,6 @@
 
 const Types = require('./Types');
 
-/** @module CBOR */
-
 /**
  * @class Encoder
  * @returns {Encoder} `this`

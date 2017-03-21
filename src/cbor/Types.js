@@ -19,8 +19,6 @@
 
 'use strict';
 
-/** @module CBOR */
-
 /**
  * @class Types
  * @throws Error

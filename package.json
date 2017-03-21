@@ -19,6 +19,6 @@
     "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js",
     "test": "mocha --recursive test/harness.js test"
   },
-  "typings": "typings/types.d.ts",
+  "types": "typings/types.d.ts",
   "version": "1.1.1"
 }
