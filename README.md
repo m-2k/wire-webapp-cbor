@@ -35,15 +35,15 @@ const encoded: ArrayBuffer = encoder.get_buffer();
 
 // Decoding
 let decoded: Uint8Array;
-const dedcoder: CBOR.Decoder = new CBOR.Decoder(encoded);
-const properties: number = dedcoder.object();
+const decoder: CBOR.Decoder = new CBOR.Decoder(encoded);
+const properties: number = decoder.object();
 for (let i = 0; i < properties; i++) {
-  switch (dedcoder.u8()) {
+  switch (decoder.u8()) {
     case 0:
-      decoded = new Uint8Array(dedcoder.bytes());
+      decoded = new Uint8Array(decoder.bytes());
       break;
     default:
-      dedcoder.skip();
+      decoder.skip();
   }
 }
 
