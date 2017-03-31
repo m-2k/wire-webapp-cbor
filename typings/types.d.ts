@@ -299,6 +299,13 @@ export declare class Encoder {
 
    /**
     * @param {!number} need_nbytes
+    * @returns {number}
+    * @private
+    */
+   private _new_buffer_length(need_nbytes: number): number;
+
+   /**
+    * @param {!number} need_nbytes
     * @returns {void}
     * @private
     */
