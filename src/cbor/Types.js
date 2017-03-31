@@ -25,7 +25,7 @@
  */
 class Types {
   constructor() {
-    throw new Error(`Can't create instance of singleton`);
+    throw new Error('Can\'t create instance of singleton');
   }
 
   /** @type {number} */

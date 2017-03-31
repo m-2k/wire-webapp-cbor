@@ -595,7 +595,7 @@ class Decoder {
    * @throws DecodeError
    */
   _skip_until_break(type) {
-    while (true) {
+    for (;;) {
       const [t, minor] = this._read_type_info();
       if (t === Types.BREAK) {
         return;

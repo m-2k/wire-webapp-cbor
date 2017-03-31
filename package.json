@@ -1,10 +1,9 @@
 {
   "description": "Implementation of Concise Binary Object Representation (CBOR) data format (RFC7049).",
   "devDependencies": {
-    "chai": "~3",
-    "eslint": "^3.17.1",
-    "jsdoc": "^3.4.3",
-    "mocha": "~3.2.0",
+    "eslint": "3.18.0",
+    "jasmine": "2.5.3",
+    "jsdoc": "3.4.3",
     "tsd-jsdoc": "dcodeio/tsd-jsdoc#fe76c4dc071b00bb549d3af7a3bad8c555999e81"
   },
   "license": "GPL-3.0",
@@ -16,8 +15,9 @@
   },
   "scripts": {
     "lint": "eslint src/",
-    "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js",
-    "test": "mocha --recursive test/harness.js test"
+    "prepublish": "npm run lint && npm run types && npm test",
+    "test": "jasmine",
+    "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js"
   },
   "types": "typings/types.d.ts",
   "version": "2.0.0"
