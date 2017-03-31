@@ -39,14 +39,22 @@ class Encoder {
 
   /**
    * @param {!number} need_nbytes
+   * @returns {number}
+   * @private
+   */
+  _new_buffer_length(need_nbytes) {
+    return Math.floor(Math.max((this.buffer.byteLength * 1.5), (this.buffer.byteLength + need_nbytes)));
+  }
+
+  /**
+   * @param {!number} need_nbytes
    * @returns {void}
    * @private
    */
   _grow_buffer(need_nbytes) {
-    const new_len = Math.max((this.buffer.byteLength * 1.5), (this.buffer.byteLength + need_nbytes));
+    const new_len = this._new_buffer_length(need_nbytes);
     const new_buf = new ArrayBuffer(new_len);
     new Uint8Array(new_buf).set(new Uint8Array(this.buffer));
-
     this.buffer = new_buf;
     this.view = new DataView(this.buffer, this.view.byteOffset);
   }

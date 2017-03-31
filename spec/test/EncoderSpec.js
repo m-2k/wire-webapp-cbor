@@ -207,4 +207,15 @@ describe('CBOR.Encoder', () => {
       e.object_end();
     })).toBe(true);
   });
+
+  it('only creates ArrayBuffers with a valid length', () => {
+    const encoder = new CBOR.Encoder();
+    spyOn(encoder, '_new_buffer_length').and.callThrough();
+
+    const typedArray = new Uint8Array([159, 1, 130, 2, 3, 159, 4, 5, 255]);
+    encoder.buffer = typedArray;
+
+    const newLength = encoder._new_buffer_length(1);
+    expect(newLength).toBe(13);
+  });
 });
