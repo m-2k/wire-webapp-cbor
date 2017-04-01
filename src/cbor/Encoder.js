@@ -43,7 +43,7 @@ class Encoder {
    * @private
    */
   _new_buffer_length(need_nbytes) {
-    return Math.floor(Math.max((this.buffer.byteLength * 1.5), (this.buffer.byteLength + need_nbytes)));
+    return ~~(Math.max((this.buffer.byteLength * 1.5), (this.buffer.byteLength + need_nbytes)));
   }
 
   /**
