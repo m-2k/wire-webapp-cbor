@@ -10,11 +10,12 @@ For licensing information, see the attached LICENSE file and the list of third-p
 
 [![Build Status](https://travis-ci.org/wireapp/cbor-codec.js.svg?branch=master)](https://travis-ci.org/wireapp/cbor-codec.js)
 
-## Build Sources
+## Installation
+
+### Yarn
 
 ```bash
-npm install
-npm test
+yarn add wire-webapp-cbor
 ```
 
 ## Usage
