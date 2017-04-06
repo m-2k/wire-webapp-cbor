@@ -15,7 +15,8 @@
   },
   "scripts": {
     "lint": "eslint src/",
-    "prepublish": "yarn lint && yarn types && yarn test",
+    "preversion": "yarn lint && yarn test",
+    "version": "yarn types && git add typings/types.d.ts",
     "test": "jasmine",
     "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js"
   },
