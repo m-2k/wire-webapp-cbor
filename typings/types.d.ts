@@ -1,21 +1,4 @@
 /**
- * @class BaseError
- * @extends Error
- * @param {string} message
- * @returns {string}
- */
-export declare class BaseError extends Error {
-   /**
-    * @class BaseError
-    * @extends Error
-    * @param {string} message
-    * @returns {string}
-    */
-   constructor(message: string);
-
-}
-
-/**
  * @class DecodeError
  * @param {string} message
  * @param {*} [extra]
