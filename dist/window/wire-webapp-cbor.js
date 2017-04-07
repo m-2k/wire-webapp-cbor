@@ -1,4 +1,4 @@
-/*! wire-webapp-cbor v2.1.1 */
+/*! wire-webapp-cbor v2.1.2 */
 var CBOR =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
