@@ -1,0 +1,18 @@
+{
+  "ignore": [
+    "**/.*",
+    "bower_components",
+    "dist/commonjs",
+    "dist/index.html",
+    "dist/index.js",
+    "dist/typings",
+    "node_modules",
+    "src",
+    "test"
+  ],
+  "license": "GPL-3.0",
+  "main": [
+    "dist/window/wire-webapp-cbor.js"
+  ],
+  "name": "wire-webapp-cbor"
+}
