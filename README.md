@@ -8,7 +8,7 @@ For licensing information, see the attached LICENSE file and the list of third-p
 
 ## Build Status
 
-[![Build Status](https://travis-ci.org/wireapp/cbor-codec.js.svg?branch=master)](https://travis-ci.org/wireapp/cbor-codec.js)
+[![Build Status](https://travis-ci.org/wireapp/wire-webapp-cbor.svg?branch=master)](https://travis-ci.org/wireapp/wire-webapp-cbor)
 
 ## Installation
 
