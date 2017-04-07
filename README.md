@@ -20,6 +20,10 @@ yarn add wire-webapp-cbor
 
 ## Usage
 
+### Browser
+
+- [index.html](./dist/index.html)
+
 ### TypeScript
 
 ```typescript
