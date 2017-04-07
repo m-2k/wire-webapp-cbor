@@ -17,8 +17,8 @@
   "scripts": {
     "dist": "webpack",
     "lint": "eslint src/",
-    "preversion": "yarn lint && yarn dist && yarn test && yarn types",
-    "version": "git add dist/**/* typings/types.d.ts",
+    "preversion": "yarn lint && yarn test && yarn types",
+    "version": "yarn dist && git add dist/**/* typings/types.d.ts",
     "postversion": "git push && git push --tags",
     "test": "jasmine",
     "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js"
