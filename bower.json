@@ -1,7 +1,15 @@
 {
   "ignore": [
     "*.*",
-    "!dist/window/**/*"
+    "**/.*",
+    "bower_components",
+    "dist/**/*",
+    "!dist/window/**/*",
+    "node_modules",
+    "spec",
+    "src",
+    "test",
+    "typings"
   ],
   "license": "GPL-3.0",
   "main": [
