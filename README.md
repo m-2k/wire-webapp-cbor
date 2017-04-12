@@ -6,9 +6,10 @@ You can find the published source code at [github.com/wireapp](https://github.co
 
 For licensing information, see the attached LICENSE file and the list of third-party licenses at [wire.com/legal/licenses/](https://wire.com/legal/licenses/).
 
-## Build Status
+## Status
 
 [![Build Status](https://travis-ci.org/wireapp/wire-webapp-cbor.svg?branch=master)](https://travis-ci.org/wireapp/wire-webapp-cbor)
+[![Greenkeeper badge](https://badges.greenkeeper.io/wireapp/wire-webapp-cbor.svg)](https://greenkeeper.io/)
 
 ## Installation
 
