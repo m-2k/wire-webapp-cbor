@@ -1,6 +1,7 @@
 {
   "description": "Implementation of Concise Binary Object Representation (CBOR) data format (RFC7049).",
   "devDependencies": {
+    "coveralls": "2.13.0",
     "eslint": "3.19.0",
     "istanbul": "0.4.5",
     "jasmine": "2.5.3",
@@ -16,6 +17,7 @@
     "url": "git://github.com/wireapp/wire-webapp-cbor.git"
   },
   "scripts": {
+    "coverage": "istanbul cover --report lcov ./node_modules/jasmine/bin/jasmine.js",
     "dist": "webpack",
     "lint": "eslint src/",
     "preversion": "yarn lint && yarn test && yarn types",
