@@ -9,8 +9,9 @@ For licensing information, see the attached LICENSE file and the list of third-p
 ## Status
 
 [![Build Status](https://travis-ci.org/wireapp/wire-webapp-cbor.svg?branch=master)](https://travis-ci.org/wireapp/wire-webapp-cbor)
-[![npm version](https://badge.fury.io/js/wire-webapp-cbor.svg)](https://www.npmjs.com/package/wire-webapp-cbor)
-[![Greenkeeper badge](https://badges.greenkeeper.io/wireapp/wire-webapp-cbor.svg)](https://greenkeeper.io/)
+[![Release Status](https://badge.fury.io/js/wire-webapp-cbor.svg)](https://www.npmjs.com/package/wire-webapp-cbor)
+[![Dependency Status](https://badges.greenkeeper.io/wireapp/wire-webapp-cbor.svg)](https://greenkeeper.io/)
+[![Coverage Status](https://coveralls.io/repos/github/wireapp/wire-webapp-cbor/badge.svg?branch=master)](https://coveralls.io/github/wireapp/wire-webapp-cbor?branch=master)
 
 ## Installation
 
