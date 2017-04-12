@@ -2,6 +2,7 @@
   "description": "Implementation of Concise Binary Object Representation (CBOR) data format (RFC7049).",
   "devDependencies": {
     "eslint": "3.18.0",
+    "istanbul": "0.4.5",
     "jasmine": "2.5.3",
     "jsdoc": "3.4.3",
     "tsd-jsdoc": "dcodeio/tsd-jsdoc#fe76c4dc071b00bb549d3af7a3bad8c555999e81",
@@ -20,7 +21,7 @@
     "preversion": "yarn lint && yarn test && yarn types",
     "version": "yarn dist && git add dist/**/* typings/types.d.ts",
     "postversion": "git push && git push --tags",
-    "test": "jasmine",
+    "test": "istanbul cover --report html ./node_modules/jasmine/bin/jasmine.js",
     "types": "jsdoc --verbose --pedantic --configure jsdoc.json src/ && node typings/replace.js"
   },
   "types": "typings/types.d.ts",
