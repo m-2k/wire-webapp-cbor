@@ -4,7 +4,7 @@
     "coveralls": "2.13.0",
     "eslint": "3.19.0",
     "istanbul": "0.4.5",
-    "jasmine": "2.5.3",
+    "jasmine": "2.6.0",
     "jsdoc": "3.4.3",
     "tsd-jsdoc": "dcodeio/tsd-jsdoc#fe76c4dc071b00bb549d3af7a3bad8c555999e81",
     "webpack": "2.3.3"
