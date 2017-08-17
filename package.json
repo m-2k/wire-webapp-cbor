@@ -7,7 +7,7 @@
     "jasmine": "2.7.0",
     "jsdoc": "3.4.3",
     "tsd-jsdoc": "dcodeio/tsd-jsdoc#fe76c4dc071b00bb549d3af7a3bad8c555999e81",
-    "webpack": "2.3.3"
+    "webpack": "3.5.5"
   },
   "license": "GPL-3.0",
   "main": "src/cbor.js",
