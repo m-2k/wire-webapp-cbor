@@ -2,7 +2,7 @@
   "description": "Implementation of Concise Binary Object Representation (CBOR) data format (RFC7049).",
   "devDependencies": {
     "coveralls": "2.13.1",
-    "eslint": "4.4.1",
+    "eslint": "4.5.0",
     "istanbul": "0.4.5",
     "jasmine": "2.8.0",
     "jsdoc": "3.5.4",
