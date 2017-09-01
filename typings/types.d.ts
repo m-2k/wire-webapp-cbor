@@ -393,119 +393,119 @@ export declare class Encoder {
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   u8(x: number): void;
+   u8(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   u16(x: number): void;
+   u16(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   u32(x: number): void;
+   u32(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   u64(x: number): void;
+   u64(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   i8(x: number): void;
+   i8(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   i16(x: number): void;
+   i16(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   i32(x: number): void;
+   i32(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     * @throws RangeError
     */
-   i64(x: number): void;
+   i64(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   f32(x: number): void;
+   f32(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   f64(x: number): void;
+   f64(x: number): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   bool(x: number): void;
+   bool(x: number): Encoder;
 
    /**
     * @param {!(ArrayBuffer|Uint8Array)} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   bytes(x: (ArrayBuffer|Uint8Array)): void;
+   bytes(x: (ArrayBuffer|Uint8Array)): Encoder;
 
    /**
     * @param {!number} x
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   text(x: number): void;
+   text(x: number): Encoder;
 
-   /** @returns {void} */
-   null(): void;
+   /** @returns {Encoder} `this` */
+   null(): Encoder;
 
-   /** @returns {void} */
-   undefined(): void;
+   /** @returns {Encoder} `this` */
+   undefined(): Encoder;
 
    /**
     * @param {!number} len
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   array(len: number): void;
+   array(len: number): Encoder;
 
-   /** @returns {void} */
-   array_begin(): void;
+   /** @returns {Encoder} `this` */
+   array_begin(): Encoder;
 
-   /** @returns {void} */
-   array_end(): void;
+   /** @returns {Encoder} `this` */
+   array_end(): Encoder;
 
    /**
     * @param {!number} len
-    * @returns {void}
+    * @returns {Encoder} `this`
     */
-   object(len: number): void;
+   object(len: number): Encoder;
 
-   /** @returns {void} */
-   object_begin(): void;
+   /** @returns {Encoder} `this` */
+   object_begin(): Encoder;
 
-   /** @returns {void} */
-   object_end(): void;
+   /** @returns {Encoder} `this` */
+   object_end(): Encoder;
 
 }
 

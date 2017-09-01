@@ -112,99 +112,99 @@ describe('CBOR.Encoder', () => {
     })).toBe(true);
 
     expect(encoded('8301820203820405', (e) => {
-      e.array(3);
-      e.u8(1);
-      e.array(2);
-      e.u8(2);
-      e.u8(3);
-      e.array(2);
-      e.u8(4);
-      e.u8(5);
+      e.array(3)
+       .u8(1)
+       .array(2)
+       .u8(2)
+       .u8(3)
+       .array(2)
+       .u8(4)
+       .u8(5);
     })).toBe(true);
   });
 
   it('handles indefinite arrays', () => {
     expect(encoded('9f018202039f0405ffff', (e) => {
-      e.array_begin();
-      e.u8(1);
-      e.array(2);
-      e.u8(2);
-      e.u8(3);
-      e.array_begin();
-      e.u8(4);
-      e.u8(5);
-      e.array_end();
-      e.array_end();
+      e.array_begin()
+       .u8(1)
+       .array(2)
+       .u8(2)
+       .u8(3)
+       .array_begin()
+       .u8(4)
+       .u8(5)
+       .array_end()
+       .array_end();
     })).toBe(true);
 
     expect(encoded('9f01820203820405ff', (e) => {
-      e.array_begin();
-      e.u8(1);
-      e.array(2);
-      e.u8(2);
-      e.u8(3);
-      e.array(2);
-      e.u8(4);
-      e.u8(5);
-      e.array_end();
+      e.array_begin()
+       .u8(1)
+       .array(2)
+       .u8(2)
+       .u8(3)
+       .array(2)
+       .u8(4)
+       .u8(5)
+       .array_end();
     })).toBe(true);
 
     expect(encoded('83018202039f0405ff', (e) => {
-      e.array(3);
-      e.u8(1);
-      e.array(2);
-      e.u8(2);
-      e.u8(3);
-      e.array_begin();
-      e.u8(4);
-      e.u8(5);
-      e.array_end();
+      e.array(3)
+       .u8(1)
+       .array(2)
+       .u8(2)
+       .u8(3)
+       .array_begin()
+       .u8(4)
+       .u8(5)
+       .array_end();
     })).toBe(true);
 
     expect(encoded('83019f0203ff820405', (e) => {
-      e.array(3);
-      e.u8(1);
-      e.array_begin();
-      e.u8(2);
-      e.u8(3);
-      e.array_end();
-      e.array(2);
-      e.u8(4);
-      e.u8(5);
+      e.array(3)
+       .u8(1)
+       .array_begin()
+       .u8(2)
+       .u8(3)
+       .array_end()
+       .array(2)
+       .u8(4)
+       .u8(5);
     })).toBe(true);
   });
 
   it('encodes objects', () => {
     expect(encoded('a26161016162820203', (e) => {
-      e.object(2);
-      e.text('a');
-      e.u8(1);
-      e.text('b');
-      e.array(2);
-      e.u8(2);
-      e.u8(3);
+      e.object(2)
+       .text('a')
+       .u8(1)
+       .text('b')
+       .array(2)
+       .u8(2)
+       .u8(3);
     })).toBe(true);
   });
 
   it('handles indefinite objects', () => {
     expect(encoded('bf6346756ef563416d7421ff', (e) => {
-      e.object_begin();
-      e.text('Fun');
-      e.bool(true);
-      e.text('Amt');
-      e.i8(-2);
-      e.object_end();
+      e.object_begin()
+       .text('Fun')
+       .bool(true)
+       .text('Amt')
+       .i8(-2)
+       .object_end();
     })).toBe(true);
   });
 
   it('handles indefinite objects', () => {
     expect(encoded('bf6346756ef563416d7421ff', (e) => {
-      e.object_begin();
-      e.text('Fun');
-      e.bool(true);
-      e.text('Amt');
-      e.i8(-2);
-      e.object_end();
+      e.object_begin()
+       .text('Fun')
+       .bool(true)
+       .text('Amt')
+       .i8(-2)
+       .object_end();
     })).toBe(true);
   });
 
