@@ -1,4 +1,4 @@
-/*! wire-webapp-cbor v2.1.4 */
+/*! wire-webapp-cbor v2.1.5 */
 var CBOR =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -8,9 +8,9 @@ var CBOR =
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -34,9 +34,6 @@ var CBOR =
 /******/
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
 /******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
@@ -65,7 +62,7 @@ var CBOR =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -307,6 +304,41 @@ module.exports = DecodeError;
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+ * Wire
+ * Copyright (C) 2016 Wire Swiss GmbH
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see http://www.gnu.org/licenses/.
+ *
+ */
+
+
+
+module.exports = {
+  BaseError:   __webpack_require__(1),
+  DecodeError: __webpack_require__(2),
+  Decoder:     __webpack_require__(4),
+  Encoder:     __webpack_require__(5),
+  Types:       __webpack_require__(0),
+};
+
+
+/***/ }),
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1002,7 +1034,7 @@ module.exports = Decoder;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1214,318 +1246,318 @@ class Encoder {
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   u8(x) {
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(x);
+      this._u8(x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(24);
-      return this._u8(x);
+      this._u8(x);
     } else {
       throw new RangeError('Invalid u8');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   u16(x) {
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(x);
+      this._u8(x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(25);
-      return this._u16(x);
+      this._u16(x);
     } else {
       throw new RangeError('Invalid u16');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   u32(x) {
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(x);
+      this._u8(x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(25);
-      return this._u16(x);
+      this._u16(x);
     } else if ((0x10000 <= x) && (x <= 0xFFFFFFFF)) {
       this._u8(26);
-      return this._u32(x);
+      this._u32(x);
     } else {
       throw new RangeError('Invalid u32');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   u64(x) {
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(x);
+      this._u8(x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(25);
-      return this._u16(x);
+      this._u16(x);
     } else if ((0x10000 <= x) && (x <= 0xFFFFFFFF)) {
       this._u8(26);
-      return this._u32(x);
+      this._u32(x);
     } else if (x <= Number.MAX_SAFE_INTEGER) {
       this._u8(27);
-      return this._u64(x);
+      this._u64(x);
     } else {
       throw new RangeError('Invalid unsigned integer');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   i8(x) {
     if (x >= 0) {
-      return this._u8(x);
+      this._u8(x);
+      return this;
     }
 
     x = -1 - x;
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(0x20 | x);
+      this._u8(0x20 | x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(0x20 | 24);
-      return this._u8(x);
+      this._u8(x);
     } else {
       throw new RangeError('Invalid i8');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   i16(x) {
     if (x >= 0) {
-      return this._u16(x);
+      this._u16(x);
+      return this;
     }
 
     x = -1 - x;
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(0x20 | x);
+      this._u8(0x20 | x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(0x20 | 24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(0x20 | 25);
-      return this._u16(x);
+      this._u16(x);
     } else {
       throw new RangeError('Invalid i16');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   i32(x) {
     if (x >= 0) {
-      return this._u32(x);
+      this._u32(x);
+      return this;
     }
 
     x = -1 - x;
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(0x20 | x);
+      this._u8(0x20 | x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(0x20 | 24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(0x20 | 25);
-      return this._u16(x);
+      this._u16(x);
     } else if ((0x10000 <= x) && (x <= 0xFFFFFFFF)) {
       this._u8(0x20 | 26);
-      return this._u32(x);
+      this._u32(x);
     } else {
       throw new RangeError('Invalid i32');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    * @throws RangeError
    */
   i64(x) {
     if (x >= 0) {
-      return this._u64(x);
+      this._u64(x);
+      return this;
     }
 
     x = -1 - x;
     if ((0 <= x) && (x <= 23)) {
-      return this._u8(0x20 | x);
+      this._u8(0x20 | x);
     } else if ((24 <= x) && (x <= 255)) {
       this._u8(0x20 | 24);
-      return this._u8(x);
+      this._u8(x);
     } else if ((0x100 <= x) && (x <= 0xFFFF)) {
       this._u8(0x20 | 25);
-      return this._u16(x);
+      this._u16(x);
     } else if ((0x10000 <= x) && (x <= 0xFFFFFFFF)) {
       this._u8(0x20 | 26);
-      return this._u32(x);
+      this._u32(x);
     } else if (x <= Number.MAX_SAFE_INTEGER) {
       this._u8(0x20 | 27);
-      return this._u64(x);
+      this._u64(x);
     } else {
       throw new RangeError('Invalid i64');
     }
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   f32(x) {
     this._u8(0xE0 | 26);
-    return this._f32(x);
+    this._f32(x);
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   f64(x) {
     this._u8(0xE0 | 27);
-    return this._f64(x);
+    this._f64(x);
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   bool(x) {
-    return this._u8(0xE0 | (x ? 21 : 20));
+    this._u8(0xE0 | (x ? 21 : 20));
+    return this;
   }
 
   /**
    * @param {!(ArrayBuffer|Uint8Array)} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   bytes(x) {
     this._write_type_and_len(Types.BYTES, x.byteLength);
-    return this._bytes(x);
+    this._bytes(x);
+
+    return this;
   }
 
   /**
    * @param {!number} x
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   text(x) {
     // http://ecmanaut.blogspot.de/2006/07/encoding-decoding-utf8-in-javascript.html
     const utf8 = unescape(encodeURIComponent(x));
 
     this._write_type_and_len(Types.TEXT, utf8.length);
-    return this._bytes(new Uint8Array(utf8.split('').map((c) => c.charCodeAt(0))));
+    this._bytes(new Uint8Array(utf8.split('').map((c) => c.charCodeAt(0))));
+
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   null() {
-    return this._u8(0xE0 | 22);
+    this._u8(0xE0 | 22);
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   undefined() {
-    return this._u8(0xE0 | 23);
+    this._u8(0xE0 | 23);
+    return this;
   }
 
   /**
    * @param {!number} len
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   array(len) {
-    return this._write_type_and_len(Types.ARRAY, len);
+    this._write_type_and_len(Types.ARRAY, len);
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   array_begin() {
-    return this._u8(0x9F);
+    this._u8(0x9F);
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   array_end() {
-    return this._u8(0xFF);
+    this._u8(0xFF);
+    return this;
   }
 
   /**
    * @param {!number} len
-   * @returns {void}
+   * @returns {Encoder} `this`
    */
   object(len) {
-    return this._write_type_and_len(Types.OBJECT, len);
+    this._write_type_and_len(Types.OBJECT, len);
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   object_begin() {
-    return this._u8(0xBF);
+    this._u8(0xBF);
+    return this;
   }
 
-  /** @returns {void} */
+  /** @returns {Encoder} `this` */
   object_end() {
-    return this._u8(0xFF);
+    this._u8(0xFF);
+    return this;
   }
 }
 
 module.exports = Encoder;
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
- * Wire
- * Copyright (C) 2016 Wire Swiss GmbH
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see http://www.gnu.org/licenses/.
- *
- */
-
-
-
-module.exports = {
-  BaseError:   __webpack_require__(1),
-  DecodeError: __webpack_require__(2),
-  Decoder:     __webpack_require__(3),
-  Encoder:     __webpack_require__(4),
-  Types:       __webpack_require__(0),
-};
 
 
 /***/ })
